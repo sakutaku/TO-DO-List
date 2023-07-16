@@ -13,12 +13,21 @@ const Home = () => {
             await axiosApi.delete(`/messages/${id}.json`);
             await dispatch(fetchMessages());
         }
-    }
+    };
+
     return (
-        <div className="container">
-            <div className="todo-list">
-                <h1>Todo App</h1>
-                <Messages deleteMessage={deleteMessage}/>
+        <div
+            className="container"
+        >
+            <div
+                className="todo-list"
+            >
+                <h1>
+                    Todo App
+                </h1>
+                <Messages
+                    deleteMessage={deleteMessage}
+                />
             </div>
         </div>
     );

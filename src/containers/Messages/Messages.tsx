@@ -23,6 +23,7 @@ const Messages: React.FC<Props> = ({deleteMessage}) => {
             <MessageItem
                 key={item.id}
                 message={item}
+                status={item.status}
                 onDelete={() => deleteMessage(item.id)}
             />
         ));
@@ -33,7 +34,9 @@ const Messages: React.FC<Props> = ({deleteMessage}) => {
     }, [dispatch]);
 
     return (
-        <div className="list">
+        <div
+            className="list"
+        >
             {messages}
         </div>
     );

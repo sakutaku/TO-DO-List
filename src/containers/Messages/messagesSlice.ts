@@ -1,15 +1,17 @@
 import {IMessage} from "../../types";
 import {createSlice} from "@reduxjs/toolkit";
-import {fetchMessages} from "./messagesThunk";
+import {fetchMessages, fetchPutMessages} from "./messagesThunk";
 
-interface DishesState {
+interface MessagesState {
     messages: IMessage[];
     fetchLoading: boolean;
+    id: string
 }
 
-const initialState: DishesState = {
+const initialState: MessagesState = {
     messages: [],
     fetchLoading: false,
+    id: '',
 };
 
 
@@ -28,6 +30,13 @@ const messagesSlice = createSlice({
         });
         builder.addCase(fetchMessages.rejected, (state) => {
             state.fetchLoading = false;
+        })
+        builder.addCase(fetchPutMessages.pending, (state) => {
+            state.fetchLoading = true;
+        });
+        builder.addCase(fetchPutMessages.fulfilled, (state, action) => {
+            state.fetchLoading = false;
+            state.id = action.payload;
         })
     },
 });
