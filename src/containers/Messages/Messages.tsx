@@ -2,7 +2,7 @@ import React, {useEffect} from 'react';
 import {useAppDispatch} from "../../app/hook";
 import {useSelector} from "react-redux";
 import {RootState} from "../../app/store";
-import Spinner from "../../components/SpinnerSpinner/Spinner";
+import Spinner from "../../components/Spinner/Spinner";
 import {IMessage} from "../../types";
 import MessageItem from "./MessageItem";
 import {fetchMessages} from "./messagesThunk";

@@ -27,12 +27,26 @@ export const fetchPutMessages = createAsyncThunk<string, string, {state: RootSta
 
         const key = messages.findIndex(message => message.id === id);
 
-        const newMessage = {
+        const data = {
             title: messages[key].title,
             status: !messages[key].status,
-        }
+        };
 
-        await axiosApi.put(`/messages/${id}.json`, newMessage);
+        await axiosApi.put(`/messages/${id}.json`, data);
         return id;
+    }
+);
+
+export const fetchPostMessages = createAsyncThunk<void, string, {state: RootState}>(
+    'messages/fetchPost',
+    async (arg, thunkAPI) => {
+        const newMessage = thunkAPI.getState().messages.newMessage;
+
+        const data = {
+            title: newMessage,
+            status: false,
+        };
+
+        await axiosApi.post('/messages.json', data);
     }
 )
