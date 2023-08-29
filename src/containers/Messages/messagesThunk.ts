@@ -49,4 +49,11 @@ export const fetchPostMessages = createAsyncThunk<void, string, {state: RootStat
 
         await axiosApi.post('/messages.json', data);
     }
-)
+);
+
+export const deleteMessage = createAsyncThunk<void, string>(
+    'messages/delete',
+    async (id) => {
+        await axiosApi.delete('/messages/' + id + '.json');
+    }
+);

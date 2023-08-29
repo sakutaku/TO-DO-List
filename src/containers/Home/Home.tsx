@@ -1,16 +1,15 @@
 import React from 'react';
-import axiosApi from "../../axiosApi";
 import Messages from "../Messages/Messages";
 import {useAppDispatch} from "../../app/hook";
-import {fetchMessages} from "../Messages/messagesThunk";
+import {deleteMessage, fetchMessages} from "../Messages/messagesThunk";
 import MessageForm from "../../components/MessageForm/MessageForm";
 
 const Home = () => {
     const dispatch = useAppDispatch();
 
-    const deleteMessage = async (id: string) => {
+    const onDeleteMessage = async (id: string) => {
         if(window.confirm('Do you want to delete task?')) {
-            await axiosApi.delete(`/messages/${id}.json`);
+            await dispatch(deleteMessage(id));
             await dispatch(fetchMessages());
         }
     };
@@ -23,7 +22,7 @@ const Home = () => {
                 </h1>
                 <MessageForm/>
                 <Messages
-                    deleteMessage={deleteMessage}
+                    deleteMessage={onDeleteMessage}
                 />
             </div>
         </div>
